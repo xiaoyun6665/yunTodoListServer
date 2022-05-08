@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm'
 import { Todoitem } from '../model/todoitem.entity'
-
+import { ResultData, ResultDataErrString, ResultDataCode } from '../utils/returnDataUtil'
 @Injectable()
 export class AppService {
   constructor(
@@ -10,8 +10,18 @@ export class AppService {
     private todoItemRepository: Repository<Todoitem>
   ) { }
 
-  getOneTodoItem(id: number): Promise<Todoitem> {
-    return this.todoItemRepository.findOne(id);
+  async getOneTodoItem(id: number): Promise<ResultData<Todoitem>> {
+    try {
+      let data = await this.todoItemRepository.findOne(id);
+      return new ResultData<Todoitem>()
+        .setCode(ResultDataCode.success)
+        .setData(data);
+    }
+    catch (error) {
+      return new ResultData<Todoitem>()
+        .setCode(ResultDataCode.error)
+        .setErrCode(ResultDataErrString.DATABASE_ERR);
+    }
   }
 
   getTodoItemByDay(
@@ -49,7 +59,7 @@ export class AppService {
   }
 
   getTodoItemByYear(
-    year: number, 
+    year: number,
     pageSize: number, pages: number
   ): Promise<Todoitem[]> {
     return this.todoItemRepository.find({

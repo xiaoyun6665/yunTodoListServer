@@ -1,13 +1,14 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { Todoitem } from 'src/model/todoitem.entity';
 import { AppService } from '../services/app.service';
-
+import { ResultData } from 'src/utils/returnDataUtil';
+import { Console } from 'console';
 @Controller('/todoitem')
 export class AppController {
   constructor(private readonly appService: AppService) { }
 
   @Get('/getOneTodoItem')
-  getOneTodoItem(@Query() params): Promise<Todoitem> {
+  getOneTodoItem(@Query() params): Promise<ResultData<Todoitem>> {
     return this.appService.getOneTodoItem(params.id);
   }
 
@@ -28,4 +29,7 @@ export class AppController {
     return this.appService.getTodoItemByYear(
       params.year, params.pageSize, params.pages);
   }
+
+  // @Post('/addOneTodoItem')
+  // addOneTodoItem(@Query() params): Promise<>
 }
