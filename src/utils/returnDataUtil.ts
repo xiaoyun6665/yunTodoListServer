@@ -52,10 +52,6 @@ class ResultData<T> {
     public getData(): T {
         return this.data;
     }
-
-    public toJson():String{
-        return JSON.stringify(this);
-    }
 }
 
 

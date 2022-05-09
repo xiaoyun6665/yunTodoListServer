@@ -13,19 +13,19 @@ export class AppController {
   }
 
   @Get('/getTodoItemByDay')
-  getTodoItemByDay(@Query() params): Promise<Todoitem[]> {
+  getTodoItemByDay(@Query() params): Promise<ResultData<Todoitem[]>> {
     return this.appService.getTodoItemByDay(
       params.year, params.month, params.day, params.pageSize, params.pages);
   }
 
   @Get('/getTodoItemByMonth')
-  getTodoItemByMonth(@Query() params): Promise<Todoitem[]> {
+  getTodoItemByMonth(@Query() params): Promise<ResultData<Todoitem[]>> {
     return this.appService.getTodoItemByMonth(
       params.year, params.month, params.pageSize, params.pages);
   }
 
   @Get('/getTodoItemByYear')
-  getTodoItemByYear(@Query() params): Promise<Todoitem[]> {
+  getTodoItemByYear(@Query() params): Promise<ResultData<Todoitem[]>> {
     return this.appService.getTodoItemByYear(
       params.year, params.pageSize, params.pages);
   }
