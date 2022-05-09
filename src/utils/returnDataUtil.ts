@@ -12,7 +12,8 @@ enum ResultDataCode {
  */
 enum ResultDataErrString {
     DATABASE_ERR = "DATABASE_ERR",
-    SERVER_ERR = "SERVER_ERR"
+    SERVER_ERR = "SERVER_ERR",
+    PARAMS_NULL_ERR = "PARAMS_NULL_ERR"
 }
 
 /**

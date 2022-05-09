@@ -14,13 +14,19 @@ export class Todoitem {
     @Column()
     createYear: number;
 
-    @Column()
+    @Column({
+        nullable: true
+    })
     completeDay: number;
 
-    @Column()
+    @Column({
+        nullable: true
+    })
     completeMonth: number;
 
-    @Column()
+    @Column({
+        nullable: true
+    })
     completeYear: number;
 
     @Column()
